@@ -2,7 +2,7 @@
   "name": "jqdom",
   "version": "0.0.1",
   "description": "A simple Node.js wrapper for jQuery",
-  "main": "dist/paginator.js",
+  "main": "dist/jqdom.js",
   "dependencies": {
     "domino": "^1.0.17",
     "jquery": "^2.1.1"
