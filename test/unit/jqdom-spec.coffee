@@ -3,6 +3,7 @@ path = require "path"
 jqdom = require "../../src/jqdom"
 fixturePath = path.resolve __dirname, "../fixtures"
 html = fs.readFileSync "#{fixturePath}/page.html", "utf8"
+altHtml = fs.readFileSync "#{fixturePath}/page-alt.html", "utf8"
 
 describe "jqdom", ->
 
@@ -12,7 +13,6 @@ describe "jqdom", ->
     expect(title).toBe "Hello, world"
 
   it "can be instantiated multiple times, on different documents", ->
-    altHtml = fs.readFileSync "#{fixturePath}/page-alt.html", "utf8"
     $1 = jqdom html
     $2 = jqdom altHtml
     expect($1('title').text()).toBe "Hello, world"
@@ -28,3 +28,10 @@ describe "jqdom", ->
     $el = $('.clone')
     $clonedEl = $el.clone().find('.remove').remove().end()
     expect($el.text().trim()).not.toBe $clonedEl.text().trim()
+
+  it "returns an recursive set of objects if there is more than one element selected in the DOM", ->
+    $ = jqdom(altHtml)
+    $elements = $('h1')
+    # expect($elements.length).toBe 2
+    $elements.each ->
+      expect($(@).text()).toContain "H1"
