@@ -1,5 +1,6 @@
-jqdom
----
+# jqdom
+
+![Downloads/month](http://img.shields.io/npm/dm/jqdom.svg)
 
 Example Usage:
 ```javascript
